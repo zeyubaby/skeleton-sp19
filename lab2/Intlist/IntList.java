@@ -5,7 +5,7 @@ import java.util.Formatter;
  * with a large number of additional methods.
  *
  * @author P. N. Hilfinger, with some modifications by Josh Hug and melaniecebula
- *         [Do not modify this file.]
+ * [Do not modify this file.]
  */
 public class IntList {
     /**
@@ -29,7 +29,7 @@ public class IntList {
      * A List with null rest, and first = 0.
      */
     public IntList() {
-    /* NOTE: public IntList () { }  would also work. */
+        /* NOTE: public IntList () { }  would also work. */
         this(0, null);
     }
 
@@ -79,34 +79,57 @@ public class IntList {
      * Returns a list consisting of the elements of A followed by the
      * *  elements of B.  May modify items of A. Don't use 'new'.
      */
-
+    /* iterative method */
+//    public static IntList dcatenate(IntList A, IntList B) {
+//        IntList C = A;
+//        while (C.rest != null) {
+//            C = C.rest;
+//        }
+//        C.rest = B;
+//        return A;
+//    }
+    /*Recursive method*/
     public static IntList dcatenate(IntList A, IntList B) {
         //TODO:  fill in method
-        return null;
+        if (A == null) return B;
+        if (A.rest == null) {
+            A.rest = B;
+        } else {
+            dcatenate(A.rest, B);
+        }
+        return A;
     }
+
 
     /**
      * Returns a list consisting of the elements of A followed by the
      * * elements of B.  May NOT modify items of A.  Use 'new'.
      */
+    /*Iterative method*/
+//    public static IntList catenate(IntList A, IntList B) {
+//        //TODO:  fill in method
+//        if (A == null) return B;
+//        IntList res = new IntList(A.first, null);
+//        IntList ptr = res;
+//        A = A.rest;
+//        while (A != null) {
+//            ptr.rest = new IntList(A.first, null);
+//            A = A.rest;
+//            ptr = ptr.rest;
+//        }
+//        while (B != null) {
+//            ptr.rest = new IntList(B.first, null);
+//            B = B.rest;
+//            ptr = ptr.rest;
+//        }
+//        return res;
+//    }
+    /*Recursive method*/
     public static IntList catenate(IntList A, IntList B) {
-        //TODO:  fill in method
-        return null;
+        if (A == null) return B;
+        IntList res = new IntList(A.first, catenate(A.rest, B));
+        return res;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     /**
